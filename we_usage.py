@@ -121,12 +121,21 @@ def format_output(usage_data, simple=False):
     total = float(item["total"])
     remain = float(item["remain"])
     pct_used = (used / total) * 100
+    remainingDays = item["freeUnitBeanDetailList"][0]["remainingDaysForRenewal"]
+    glyph = "🌐"  # You can change this to any other glyph
 
     if simple:
         return f"{used:.1f}/{total:.0f}GB ({remain:.1f} left)"
-        # return f"{remain:.1f}"
 
-    return f"WE: {remain:.1f}GB"
+    # Define color thresholds
+    if remain < 20:
+        color = "#FF0000"  # Red for low value
+    elif remain < 50:
+        color = "#FFA500"  # Orange for medium value
+    else:
+        color = "#00FF00"  # Green for high value
+
+    return f"%{{F{color}}}{glyph} {remain:.1f}GB ({remainingDays})%{{F-}}"
 
 
 def main():
@@ -150,7 +159,7 @@ def main():
     usage_data, error = get_usage(session, config)
 
     if error:
-        print(f"TE: Error ({error})")
+        print(f"WE: Error ({error})")
         sys.exit(1)
 
     # Simple output for Polybar (remove --simple for full output)
