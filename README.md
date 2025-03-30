@@ -11,11 +11,15 @@ This allows porting to `Polybar`, `Conky`, etc.
 
 ```json
 {
-    "username": "FBB693779669",
+    "username": "<prefixed_landline_number>",
     "password": "your_password"
 }
 
 ```
+
+## How to Get Username??
+
+Use devtools to inspect `my.we.eg` portal login, and find `username` in response.
 
 ## Usage
 
@@ -38,7 +42,7 @@ Add to your Polybar config (~/.config/polybar/config):
 ```ini
 [module/te-usage]
 type = custom/script
-exec = /path/to/te_usage_monitor.py --simple
+exec = /path/to/we_usage.py --simple
 interval = 3600  # Update every hour
 format = <label>
 label = %output%
