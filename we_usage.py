@@ -5,6 +5,7 @@ from time import sleep
 import sys
 import os
 from pathlib import Path
+import subprocess
 
 # --- CONFIGURATION ---
 CONFIG_FILE = os.path.expanduser("~/dotfiles/.bin/we_usage.json")
@@ -134,6 +135,9 @@ def format_output(usage_data, simple=False):
         color = "#FFA500"  # Orange for medium value
     else:
         color = "#00FF00"  # Green for high value
+
+    if remain <10:
+        subprocess.run(["notify-send", "WE Usage", "Usage is below 10GB"])
 
     return f"%{{F{color}}}{glyph} {remain:.1f}GB ({remainingDays})%{{F-}}"
 
