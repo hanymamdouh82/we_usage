@@ -27,7 +27,7 @@ def load_config():
         print("Please create it with your credentials in this format:")
         print(
             """{
-    "username": "FBB693779669",
+    "username": "FBB0211122233",
     "password": "your_password"
 }"""
         )
