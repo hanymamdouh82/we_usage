@@ -21,7 +21,13 @@ USAGE_URL = (
 def load_config():
     """Load configuration from file"""
     try:
-        with open(CONFIG_FILE) as f:
+        argConf = sys.argv[1:]
+        if len(argConf) != 0:
+            confFile = argConf[0]
+        else:
+            confFile = CONFIG_FILE
+
+        with open(confFile) as f:
             return json.load(f)
     except FileNotFoundError:
         print(f"❌ Config file not found at {CONFIG_FILE}")
