@@ -129,23 +129,23 @@ def format_output(usage_data, simple=False):
     remain = float(item["remain"])
     pct_used = (used / total) * 100
     remainingDays = item["freeUnitBeanDetailList"][0]["remainingDaysForRenewal"]
-    glyph = "🌐"  # You can change this to any other glyph
+    # glyph = "🌐"  # You can change this to any other glyph
 
     if simple:
         return f"{used:.1f}/{total:.0f}GB ({remain:.1f} left)"
 
     # Define color thresholds
     if remain < 20:
-        color = "#FF0000"  # Red for low value
+        color = "#A54242"  # Red for low value
     elif remain < 50:
-        color = "#FFA500"  # Orange for medium value
+        color = "#F0C674"  # Orange for medium value
     else:
         color = "#00FF00"  # Green for high value
 
     if remain <10:
         subprocess.run(["notify-send", "WE Usage", "Usage is below 10GB"])
 
-    return f"%{{F{color}}}{glyph} {remain:.1f}GB ({remainingDays})%{{F-}}"
+    return f"%{{F{color}}}{remain:.1f}GB ({remainingDays})%{{F-}}"
 
 
 def main():
