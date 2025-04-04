@@ -140,7 +140,7 @@ def format_output(usage_data, simple=False):
     elif remain < 50:
         color = "#FFA500"  # Orange for medium value
     else:
-        color = "#00FF00"  # Green for high value
+        color = "#adff00"  # Green for high value
 
     if remain <10:
         subprocess.run(["notify-send", "WE Usage", "Usage is below 10GB"])
